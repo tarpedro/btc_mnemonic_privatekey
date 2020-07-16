@@ -1,4 +1,5 @@
 from bitcoin import *
+import json
 
 
 def btc_priv_key_generator(myVariable):
@@ -6,8 +7,11 @@ def btc_priv_key_generator(myVariable):
     privwif = encode_privkey(priv, 'wif')
     privpub = privtopub(priv)
     addr = pubtoaddr(privpub)
-    print("private key: "f'{privwif}')
-    print("public key: "f'{addr}')
+    print(f'private key: {privwif}')
+    print(f'public key: {addr}')
+    keys = {'private key': f'{privwif}', 'public key': f'{addr}'}
+    json_keys = json.dumps(keys)
+    return json_keys
 
 if __name__ == "__main__":
     mnemonic_key = input("Enter passphrase:")
